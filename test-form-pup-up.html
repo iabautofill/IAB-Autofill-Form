@@ -1,13 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#db5945">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
-  <title>Auto Complete Attribute Test</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
 <body>
 
 <h2>Popup Form</h2>
@@ -18,32 +85,23 @@
 
 <div class="form-popup" id="myForm">
   <form action="/action_page.php" class="form-container">
-    <fieldset>
-          <legend>Contact Info</legend>
-          <div class="form-group">
-            <label for="frmNameA" class="col-lg-2 control-label">Name</label>
-            <div class="col-lg-10">
-              <input name="name" id="frmNameA" class="form-control validate" placeholder="Full name" required autocomplete="name"></div>
-          </div>
-          <div class="form-group">
-            <label for="frmEmailA" class="col-lg-2 control-label">Email</label>
-            <div class="col-lg-10">
-              <input type="email" name="email" class="form-control validate" id="frmEmailA" placeholder="name@example.com" required autocomplete="email"></div>
-          </div>
-          <div class="form-group">
-            <label for="frmPhoneNumA" class="col-lg-2 control-label">Phone</label>
-            <div class="col-lg-10">
-              <input type="tel" name="phone" id="frmPhoneNumA" class="form-control validate" placeholder="+1-650-450-1212" required autocomplete="tel"></div>
-          </div>
-        </fieldset>
+    <h1>Login</h1>
+
+    <label for="email"><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required autocomplete="email">
+    
+    <label><b>Name</b></label>
+    <input type="text" name="name" id="frmNameA" placeholder="Full Name" required autocomplete="name">
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
 
-  
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-  <script>
+<script>
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
@@ -52,5 +110,6 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 </script>
-  </body>
+
+</body>
 </html>
